@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://uimgv4e1bbr5"]
+
+[ext_resource type="Script" path="res://scripts/card_castle.gd" id="1_8xld3"]
+[ext_resource type="Texture2D" uid="uid://drngoxto32yc4" path="res://assets/castle.png" id="1_ch5fh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_shfdh"]
+size = Vector2(32, 32)
+
+[node name="CardCastle" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_8xld3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ch5fh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_shfdh")

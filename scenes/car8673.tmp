@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt2yj3e60a611"]
+
+[ext_resource type="Script" path="res://scripts/card.gd" id="1_op58g"]
+[ext_resource type="Texture2D" uid="uid://c3x0wxkakfifq" path="res://assets/card.png" id="1_voajl"]
+
+[node name="card" type="PanelContainer"]
+custom_minimum_size = Vector2(32, 32)
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_op58g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_voajl")
+centered = false
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

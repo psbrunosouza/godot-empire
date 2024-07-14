@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8k0y6ghap08m"]
+
+[ext_resource type="Script" path="res://scripts/card_in_hand.gd" id="1_gsh07"]
+[ext_resource type="Texture2D" uid="uid://c3x0wxkakfifq" path="res://assets/card.png" id="2_8dtsb"]
+
+[node name="CardInHand" type="MarginContainer"]
+script = ExtResource("1_gsh07")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8dtsb")
