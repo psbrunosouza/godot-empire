@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardCharacterResource" load_steps=3 format=3 uid="uid://2uoravw6pmnw"]
+
+[ext_resource type="Texture2D" uid="uid://b8jynuitfh0kk" path="res://assets/characters/warrior.png" id="1_l4uxp"]
+[ext_resource type="Script" path="res://scripts/card_character_resource.gd" id="2_o2yno"]
+
+[resource]
+script = ExtResource("2_o2yno")
+life = 5
+power = 1
+multiple_hit_chance = 0
+has_shield = true
+card_texture = ExtResource("1_l4uxp")

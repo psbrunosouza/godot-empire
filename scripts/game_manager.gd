@@ -1,15 +1,13 @@
 extends Node
 
-@export var card_resources: Dictionary = {}
+signal add_enemy
 
-const card_resource = preload("res://scripts/card_resource.gd")
-const spot_scene: PackedScene = preload("res://scenes/spot.tscn")
-
+var spot_scene: PackedScene = preload("res://scenes/spot.tscn")
+var card_resources: Dictionary = {}
 var spots: Array[Spot] = []
 var is_over_the_spot: bool = false
 var selected_spot: Spot = null 
-var life = 10
-var defense = 0
+var enemies: Array[Enemy] = []
 
 func _init():
 	initialize_card_resources()
@@ -34,12 +32,11 @@ func create_spot(coordinate: Vector2i) -> Spot:
 
 func initialize_card_resources():
 	card_resources = {
-		"forest": card_resource.new(
-			0,
-			0,
-			5,
-			preload("res://assets/forest.png")
-		)
+		"forest": load("res://resources/place_resources/forest.tres"),
+		#"archer": load("res://resources/character_resources/archer.tres"),
+		#"rogue": load("res://resources/character_resources/rogue.tres"),
+		#"sorcerer": load("res://resources/character_resources/sorcerer.tres"),
+		#"warrior": load("res://resources/character_resources/warrior.tres"),
 	}
 
 

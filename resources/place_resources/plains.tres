@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardPlaceResource" load_steps=3 format=3 uid="uid://bo1ystvqxrxe"]
+
+[ext_resource type="Texture2D" uid="uid://0ivtuykh81sw" path="res://assets/places/plains.png" id="1_r8o5c"]
+[ext_resource type="Script" path="res://scripts/card_place_resource.gd" id="2_rqrx2"]
+
+[resource]
+script = ExtResource("2_rqrx2")
+id = 3
+more_life = 0
+more_shield = 0
+more_damage = 5
+effect_multiplier = 1
+negative_effect = 0
+card_texture = ExtResource("1_r8o5c")

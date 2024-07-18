@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bt2yj3e60a611"]
 
 [ext_resource type="Script" path="res://scripts/card.gd" id="1_op58g"]
-[ext_resource type="Texture2D" uid="uid://bxqhw7ir6cfxv" path="res://assets/characters/archer.png" id="2_ucuyr"]
+[ext_resource type="Texture2D" uid="uid://bxqhw7ir6cfxv" path="res://assets/archer.png" id="2_0lkyw"]
 
 [node name="Card" type="MarginContainer"]
 custom_minimum_size = Vector2(32, 32)
@@ -14,8 +14,7 @@ script = ExtResource("1_op58g")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("2_ucuyr")
+texture = ExtResource("2_0lkyw")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

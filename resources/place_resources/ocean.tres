@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardPlaceResource" load_steps=3 format=3 uid="uid://jdu1ayq7aitr"]
+
+[ext_resource type="Texture2D" uid="uid://ia1vhmne4j40" path="res://assets/places/ocean.png" id="1_3ws4x"]
+[ext_resource type="Script" path="res://scripts/card_place_resource.gd" id="2_xh1gb"]
+
+[resource]
+script = ExtResource("2_xh1gb")
+id = 1
+more_life = 5
+more_shield = 1
+more_damage = 0
+effect_multiplier = 1
+negative_effect = 0
+card_texture = ExtResource("1_3ws4x")
