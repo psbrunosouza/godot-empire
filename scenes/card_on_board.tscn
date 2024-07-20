@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bglcmxryfjvfj"]
+[gd_scene load_steps=4 format=3 uid="uid://bglcmxryfjvfj"]
 
 [ext_resource type="Script" path="res://scripts/card_on_board.gd" id="1_l4m51"]
 [ext_resource type="Texture2D" uid="uid://boeelgy143vj5" path="res://assets/characters/rogue.png" id="2_oft31"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7kijp"]
+size = Vector2(32, 32)
 
 [node name="CardOnBoard" type="CharacterBody2D"]
 script = ExtResource("1_l4m51")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_oft31")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7kijp")

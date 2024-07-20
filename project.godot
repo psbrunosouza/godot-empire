@@ -24,7 +24,6 @@ CastleManager="*res://scripts/castle_manager.gd"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=2
 window/stretch/mode="viewport"
 
 [input]
@@ -44,3 +43,4 @@ mouse_left={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.145098, 0.0745098, 0.101961, 1)

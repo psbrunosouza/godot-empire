@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="CardCharacterResource" load_steps=3 format=3 uid="uid://c2vrelmuy2vsk"]
+[gd_resource type="Resource" script_class="CardCharacterResource" load_steps=4 format=3 uid="uid://c2vrelmuy2vsk"]
 
 [ext_resource type="Texture2D" uid="uid://bxqhw7ir6cfxv" path="res://assets/characters/archer.png" id="1_3u8t7"]
+[ext_resource type="Resource" uid="uid://dnjq62rju1a4k" path="res://resources/projectile_resources/arrow.tres" id="2_aun1v"]
 [ext_resource type="Script" path="res://scripts/card_character_resource.gd" id="2_yiwce"]
 
 [resource]
@@ -10,3 +11,4 @@ power = 3
 multiple_hit_chance = 0
 has_shield = true
 card_texture = ExtResource("1_3u8t7")
+projectile_resource = ExtResource("2_aun1v")

@@ -3,10 +3,8 @@
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_svvdl"]
 [ext_resource type="Texture2D" uid="uid://bq0mynh0v263c" path="res://assets/enemies/goblin.png" id="2_uccod"]
 
-[node name="Enemy" type="MarginContainer"]
-custom_minimum_size = Vector2(32, 32)
+[node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_svvdl")
 
-[node name="Texture" type="TextureRect" parent="."]
-layout_mode = 2
+[node name="Texture" type="Sprite2D" parent="."]
 texture = ExtResource("2_uccod")

@@ -6,15 +6,15 @@
 [node name="Game" type="Node2D"]
 script = ExtResource("1_awoco")
 
-[node name="SpotsContainer" type="Node2D" parent="."]
+[node name="Spots" type="Node2D" parent="."]
 position = Vector2(320, 180)
 
-[node name="CardsContainer" type="Node2D" parent="."]
+[node name="Card" type="Node2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
 [node name="UI" parent="." instance=ExtResource("1_btqh0")]
 
-[connection signal="attack_turn_started" from="." to="." method="_on_attack_turn_started"]
-[connection signal="update_card_hand" from="." to="UI" method="_on_game_update_card_hand"]
+[connection signal="card_hand_signal" from="." to="UI" method="_on_game_card_hand_signal"]
+[connection signal="generate_spots_around_signal" from="." to="." method="_on_generate_spots_around_signal"]

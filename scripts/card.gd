@@ -16,7 +16,7 @@ func _input(event):
 			if card_highlighted:
 				card_in_hand = card_in_hand_scene.instantiate() as CardInHand
 				card_in_hand.card_resource = card_resource
-				get_tree().root.get_node("/root/Game/Card").add_child(card_in_hand)
+				get_node("/root/Game/CardsContainer").add_child(card_in_hand)
 				$TextureRect.hide()
 				is_dragging = true
 		
@@ -24,16 +24,18 @@ func _input(event):
 		if event.is_released():
 			if is_dragging and GameManager.is_over_the_spot:
 				# place card on board
-				var card_on_board = card_on_board_scene.instantiate() as CardOnBoard
+				var card_on_board: CardOnBoard = card_on_board_scene.instantiate() as CardOnBoard
 				card_on_board.card_resource = card_resource
+				GameManager.selected_spot.sprite.hide()
 				GameManager.selected_spot.add_child(card_on_board)
 				
-				# generate spots around
-				var game = get_tree().root.get_node("/root/Game") as Game
-				game.generate_spots_around_signal.emit(GameManager.selected_spot.coordinate)
+				if card_on_board.card_resource is CardCharacterResource:
+					GameManager.cards.append(card_on_board)
+				elif card_on_board.card_resource is CardPlaceResource:
+					card_on_board.card_resource.call_effects()
 				
-				# TODO: chamar ações da carta
-				card_on_board.card_resource.call_effects()
+				#var game = get_tree().root.get_node("/root/Game") as Game
+				#game.generate_spots_around_signal.emit(GameManager.selected_spot.coordinate)
 				
 				is_dragging = false
 				card_in_hand.queue_free()

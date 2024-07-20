@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="CardCharacterResource" load_steps=3 format=3 uid="uid://2uoravw6pmnw"]
+[gd_resource type="Resource" script_class="CardCharacterResource" load_steps=4 format=3 uid="uid://2uoravw6pmnw"]
 
 [ext_resource type="Texture2D" uid="uid://b8jynuitfh0kk" path="res://assets/characters/warrior.png" id="1_l4uxp"]
+[ext_resource type="Resource" uid="uid://cjo7l5024p2s4" path="res://resources/projectile_resources/sword.tres" id="2_akv8m"]
 [ext_resource type="Script" path="res://scripts/card_character_resource.gd" id="2_o2yno"]
 
 [resource]
@@ -10,3 +11,4 @@ power = 1
 multiple_hit_chance = 0
 has_shield = true
 card_texture = ExtResource("1_l4uxp")
+projectile_resource = ExtResource("2_akv8m")

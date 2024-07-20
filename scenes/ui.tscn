@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2qym7l0qwwb6"]
+[gd_scene load_steps=2 format=3 uid="uid://c2qym7l0qwwb6"]
 
-[ext_resource type="Script" path="res://scripts/enemies_container.gd" id="1_6tkq5"]
-[ext_resource type="Script" path="res://scripts/hand.gd" id="1_0021y"]
+[ext_resource type="Script" path="res://scripts/ui.gd" id="1_e0ygo"]
 
 [node name="UI" type="CanvasLayer"]
+script = ExtResource("1_e0ygo")
 
 [node name="Container" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -17,28 +17,41 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VerticalBox" type="VBoxContainer" parent="Container"]
+[node name="ContainerVertical" type="VBoxContainer" parent="Container"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Space2" type="Control" parent="Container/VerticalBox"]
+[node name="HUD" type="HBoxContainer" parent="Container/ContainerVertical"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Enemies" type="HBoxContainer" parent="Container/VerticalBox"]
+[node name="Enemies" type="HBoxContainer" parent="Container/ContainerVertical"]
+visible = false
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_6tkq5")
 
-[node name="Space" type="Control" parent="Container/VerticalBox"]
+[node name="Middle" type="HBoxContainer" parent="Container/ContainerVertical"]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="Hand" type="HBoxContainer" parent="Container/VerticalBox"]
+[node name="VBoxContainer" type="MarginContainer" parent="Container/ContainerVertical/Middle"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+
+[node name="ButtonEndTurn" type="Button" parent="Container/ContainerVertical/Middle/VBoxContainer"]
+layout_mode = 2
+text = "End Turn"
+
+[node name="Cards" type="HBoxContainer" parent="Container/ContainerVertical"]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_filter = 2
-script = ExtResource("1_0021y")
+
+[connection signal="button_down" from="Container/ContainerVertical/Middle/VBoxContainer/ButtonEndTurn" to="." method="_on_button_end_turn_button_down"]
