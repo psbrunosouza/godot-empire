@@ -31,7 +31,7 @@ enum POSITIVE_ACTION {
 @export var positive_effect: POSITIVE_ACTION
 @export var negative_effect: NEGATIVE_ACTION
 @export_category("Texture")
-@export var card_texture: Texture = null
+@export var texture: Texture = null
 
 func call_effects():
 	match id:

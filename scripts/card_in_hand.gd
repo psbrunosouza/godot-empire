@@ -9,5 +9,5 @@ func _process(_delta):
 
 func _set_card_resource(_card_resource):
 	card_resource = _card_resource
-	$Sprite2D.texture = card_resource.card_texture
+	$Sprite2D.texture = card_resource.texture
 

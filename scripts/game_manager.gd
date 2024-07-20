@@ -9,7 +9,7 @@ var card_resources: Dictionary = {}
 var enemies_resources: Dictionary = {}
 var spots: Array[Spot] = []
 var enemies: Array[Enemy] = []
-var cards: Array[CardOnBoard] = []
+var cards: Array = []
 var card_hand: Array[Card] = []
 var turn: int = 1
 var life: int = 10
@@ -36,7 +36,7 @@ func initialize_card_resources():
 	
 func intialize_enemies():
 	enemies_resources = {
-		"wolf":  load("res://resources/enemy_resources/wolve.tres") 
+		"goblin":  load("res://resources/enemy_resources/goblin.tres") 
 	}
 	
 

@@ -8,7 +8,6 @@
 script = ExtResource("2_o2yno")
 life = 5
 power = 1
-multiple_hit_chance = 0
 has_shield = true
-card_texture = ExtResource("1_l4uxp")
+texture = ExtResource("1_l4uxp")
 projectile_resource = ExtResource("2_akv8m")

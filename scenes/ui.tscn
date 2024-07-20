@@ -26,6 +26,18 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 mouse_filter = 2
 
+[node name="Turn" type="Label" parent="Container/ContainerVertical/HUD"]
+layout_mode = 2
+text = "Turn 1"
+
+[node name="Control" type="Control" parent="Container/ContainerVertical/HUD"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Life" type="Label" parent="Container/ContainerVertical/HUD"]
+layout_mode = 2
+text = "Life: 1"
+
 [node name="Enemies" type="HBoxContainer" parent="Container/ContainerVertical"]
 visible = false
 custom_minimum_size = Vector2(32, 32)
@@ -54,4 +66,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
 
+[connection signal="cards_updated" from="." to="." method="_on_cards_updated"]
+[connection signal="life_updated" from="." to="." method="_on_life_updated"]
+[connection signal="turn_updated" from="." to="." method="_on_turn_updated"]
 [connection signal="button_down" from="Container/ContainerVertical/Middle/VBoxContainer/ButtonEndTurn" to="." method="_on_button_end_turn_button_down"]

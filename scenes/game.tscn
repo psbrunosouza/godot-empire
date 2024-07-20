@@ -17,4 +17,3 @@ anchor_mode = 0
 [node name="UI" parent="." instance=ExtResource("1_btqh0")]
 
 [connection signal="attack_turn_started" from="." to="." method="_on_attack_turn_started"]
-[connection signal="update_card_hand" from="." to="UI" method="_on_game_update_card_hand"]

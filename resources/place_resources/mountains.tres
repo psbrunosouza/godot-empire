@@ -6,9 +6,10 @@
 [resource]
 script = ExtResource("2_wu24d")
 id = 2
-more_life = 0
-more_shield = 1
-more_damage = 0
+life = 0
+damage = 0
+shield = false
 effect_multiplier = 1
+positive_effect = 0
 negative_effect = 0
-card_texture = ExtResource("1_bwdfv")
+texture = ExtResource("1_bwdfv")

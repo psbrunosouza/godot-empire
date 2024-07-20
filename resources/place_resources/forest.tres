@@ -12,4 +12,4 @@ shield = null
 effect_multiplier = 2
 positive_effect = 0
 negative_effect = 0
-card_texture = ExtResource("1_io51d")
+texture = ExtResource("1_io51d")
