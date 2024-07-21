@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("2_mikrf")
 id = "\"sorcerer\""
-life = 1
+life = 3
 power = 5
 has_shield = false
 has_double_hit = false

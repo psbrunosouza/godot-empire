@@ -7,9 +7,9 @@
 [resource]
 script = ExtResource("2_v07yp")
 id = "\"rogue\""
-life = 2
+life = 3
 power = 4
 has_shield = false
-double_hit = false
+has_double_hit = false
 texture = ExtResource("1_xqgt7")
 projectile_resource = ExtResource("2_2e6g2")

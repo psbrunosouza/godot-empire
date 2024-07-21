@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("2_yiwce")
 id = "\"archer\""
-life = 2
+life = 3
 power = 2
 has_shield = false
 has_double_hit = true

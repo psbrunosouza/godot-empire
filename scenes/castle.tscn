@@ -1,10 +1,52 @@
-[gd_scene load_steps=3 format=3 uid="uid://uimgv4e1bbr5"]
+[gd_scene load_steps=6 format=3 uid="uid://uimgv4e1bbr5"]
 
 [ext_resource type="Script" path="res://scripts/card_castle.gd" id="1_kb8ds"]
 [ext_resource type="Texture2D" uid="uid://drngoxto32yc4" path="res://assets/places/castle.png" id="2_3ig7k"]
+
+[sub_resource type="Animation" id="Animation_r6cgc"]
+resource_name = "hitted"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cy3pb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cs13x"]
+_data = {
+"RESET": SubResource("Animation_cy3pb"),
+"hitted": SubResource("Animation_r6cgc")
+}
 
 [node name="CardCastle" type="CharacterBody2D"]
 script = ExtResource("1_kb8ds")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_3ig7k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cs13x")
+}

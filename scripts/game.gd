@@ -97,23 +97,41 @@ func create_enemy(resource) -> Enemy:
 func get_random_enemy() -> Enemy:
 	return GameManager.enemies[randi() % GameManager.enemies.size()]
 	
-func get_random_card() -> CardOnBoard:
-	var cards = GameManager.cards.filter(func(card): return card is CardOnBoard)
+func get_random_card():
+	return GameManager.cards[randi() % GameManager.cards.size()]
+	
+func get_random_shilded_card() -> CardOnBoard:
+	var cards = GameManager.cards.filter(func(card): return card is CardOnBoard and card.has_shield)
 	return cards[randi() % cards.size()]
 
+func check_has_shield() -> bool:
+	return GameManager.cards.filter(func(card): return card is CardOnBoard and card.has_shield).size() >= 1
+
 func perform_characters_attack():
-	var cards = GameManager.cards.filter(func(card): return card is CardOnBoard)
+	var cards = GameManager.cards.filter(
+		func(card): return card is CardOnBoard and card.resource is CharacterResource
+	) as Array[CardOnBoard]
 	if cards.size() >= 1:
 		for card in cards:
-			if card.resource is CharacterResource and GameManager.enemies.size() >= 1:
-				await card.attack(get_random_enemy())
+			if card.resource.has_double_hit:
+				if GameManager.enemies.size() >= 1:
+					await card.attack(get_random_enemy())
+					await card.attack(get_random_enemy())
+			else:
+				if GameManager.enemies.size() >= 1:
+					await card.attack(get_random_enemy())
 
 func perform_enemy_attack():
 	if GameManager.enemies.size() >= 1:
 		for enemy in GameManager.enemies:
-			var cards = GameManager.cards.filter(func(card): return card is CardOnBoard)
-			if cards.size() >= 1:
-				await enemy.attack(get_random_card())
+			if GameManager.cards.size() >= 1:
+				if check_has_shield():
+					var random_card = get_random_shilded_card()
+					await enemy.attack(random_card)
+					random_card.has_shield = false
+				else:
+					var random_card = get_random_card()
+					await enemy.attack(random_card)
 
 func _on_attack_turn_started():
 	GameManager.turn += 1
