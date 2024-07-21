@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("1_j2j3p")
-life = 8
+life = 4
+power = 2
 texture = ExtResource("2_o8032")
 projectile_resource = ExtResource("1_bax4i")

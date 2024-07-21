@@ -39,16 +39,17 @@ func call_effects():
 			if randi_range(0, 1) == 0:
 				match negative_effect:
 					NEGATIVE_ACTION.SPAWN_WOLVE:
-						print("vc recebeu um efeito negativo")
-						for values in range(randi_range(1, effect_multiplier)):
-							var enemy = load("res://scenes/enemy.tscn").instantiate()
-							enemy.resource = load("res://resources/enemy_resources/wolve.tres")
-							GameManager.enemies.append(enemy)
-							GameManager.add_enemy.emit(enemy)
+						#for values in range(randi_range(1, effect_multiplier)):
+							#var enemy = load("res://scenes/enemy.tscn").instantiate()
+							#enemy.resource = load("res://resources/enemy_resources/wolve.tres")
+							#GameManager.enemies.append(enemy)
+							#GameManager.add_enemy.emit(enemy)
+							pass
 			else:
 				match positive_effect:
 					POSITIVE_ACTION.HEAL_CASTLE:
-						print("vc recebeu um efeito positivo")
+						#print("vc recebeu um efeito positivo")
+						pass
 		PLACE.OCEAN:
 			print("OCEAN")
 		PLACE.MOUNTAINS:

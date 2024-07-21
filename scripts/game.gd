@@ -11,8 +11,9 @@ const enemy_scene: PackedScene = preload("res://scenes/enemy.tscn")
 
 @onready var spots_container = $SpotsContainer
 @onready var ui = $UI
+@onready var button = $UI/Container/ContainerVertical/Middle/VBoxContainer/ButtonEndTurn
 
-var enemies_generated: bool = false
+var enemies_generated: bool
 
 func _ready():
 	# create cards hand
@@ -37,30 +38,28 @@ func _ready():
 
 func _process(_delta):
 	if GameManager.life == 0:
-		print("end game")
-	generate_enemies(2, 4)
+		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+	generate_enemies(2, 3)
 
-func generate_enemies(quantity_of_enemies: int, quantity_of_turns: int): 
-	if quantity_of_enemies >= 1 and not enemies_generated:
-		if GameManager.turn == 1 or GameManager.turn % quantity_of_turns == 0:
-			var spot = GameManager.spots[randi() % GameManager.spots.size()]
-			var enemy = create_enemy(
-				GameManager.enemies_resources[
-					GameManager.enemies_resources.keys().pick_random()
-				]
-			)
-			if spot.is_ocuppied:
-				enemy.queue_free()
-				generate_enemies(quantity_of_enemies, quantity_of_turns)
-			else:
+func generate_enemies(enemies_quantity: int, enemies_per_turn: int):
+	if  not enemies_generated:
+		for i in range(enemies_quantity):
+			var spots: Array[Spot] = []
+			spots = GameManager.spots.filter(func(spot: Spot): return spot != null and not spot.is_ocuppied)
+			if GameManager.turn % enemies_per_turn == 0 and spots.size() >= 1:
+				var spot = spots[randi() % spots.size()]
+				var enemy = create_enemy(
+					GameManager.enemies_resources[
+						GameManager.enemies_resources.keys().pick_random()
+					]
+				)
+				GameManager.enemies.append(enemy)
 				spot.fill_spot(enemy)
-				generate_enemies(quantity_of_enemies-1, quantity_of_turns)
-	else:
-		enemies_generated = true
+				enemies_generated = true
 
 func generate_spots(coordinate: Vector2i):
-	for x in range(coordinate.x -3, coordinate.x + 4):
-		for y in range(coordinate.y -3, coordinate.y + 4):
+	for x in range(coordinate.x -1, coordinate.x + 2):
+		for y in range(coordinate.y -1, coordinate.y + 2):
 			var spot_coordinate = Vector2i(x, y)
 			if not GameManager.spot_ocuppied(spot_coordinate):
 				var spot = create_spot(spot_coordinate)
@@ -92,25 +91,25 @@ func create_spot(coordinate: Vector2i) -> Spot:
 func create_enemy(resource) -> Enemy:
 	var enemy: Enemy = enemy_scene.instantiate()
 	enemy.resource = resource
-	GameManager.enemies.append(enemy)
 	return enemy
 
+func get_random_enemy() -> Enemy:
+	return GameManager.enemies[randi() % GameManager.enemies.size()]
+
 func perform_characters_attack():
-	if GameManager.cards.size():
+	if GameManager.cards.size() >= 1:
 		for card in GameManager.cards:
-			if card is CardOnBoard:
-				if  card.resource is CharacterResource:
-					var enemy = GameManager.enemies[randi() % GameManager.enemies.size()]
-					card.attack(enemy)
-					await get_tree().create_timer(1).timeout
+			if card is CardOnBoard and card.resource is CharacterResource and GameManager.enemies.size() >= 1:
+				await card.attack(get_random_enemy())
 
 func perform_enemy_attack():
-	if GameManager.enemies.size():
+	if GameManager.enemies.size() >= 1:
 		for enemy in GameManager.enemies:
-			if GameManager.cards.size():
+			if GameManager.cards.size() >= 1:
 				var card = GameManager.cards[randi() % GameManager.cards.size()]
-				enemy.attack(card)
-				await get_tree().create_timer(1).timeout
+				if enemy != null and card != null:
+					enemy.attack(card)
+					await get_tree().create_timer(0.5).timeout
 
 func _on_attack_turn_started():
 	GameManager.turn += 1
@@ -118,5 +117,6 @@ func _on_attack_turn_started():
 	enemies_generated = false
 	ui.turn_updated.emit(GameManager.turn)
 	await perform_characters_attack()
-	perform_enemy_attack()
+	await perform_enemy_attack()
+	button.disabled = false
 

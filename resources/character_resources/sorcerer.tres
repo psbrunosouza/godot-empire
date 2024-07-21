@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardCharacterResource" load_steps=4 format=3 uid="uid://coidl0b0sse07"]
+[gd_resource type="Resource" script_class="CharacterResource" load_steps=4 format=3 uid="uid://coidl0b0sse07"]
 
 [ext_resource type="Texture2D" uid="uid://um5xgd80b5mf" path="res://assets/characters/sorcerer.png" id="1_q3crw"]
 [ext_resource type="Script" path="res://scripts/card_character_resource.gd" id="2_mikrf"]
@@ -6,8 +6,10 @@
 
 [resource]
 script = ExtResource("2_mikrf")
+id = "\"sorcerer\""
 life = 1
 power = 5
 has_shield = false
+has_double_hit = false
 texture = ExtResource("1_q3crw")
 projectile_resource = ExtResource("2_uf531")
