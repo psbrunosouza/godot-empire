@@ -96,21 +96,24 @@ func create_enemy(resource) -> Enemy:
 
 func get_random_enemy() -> Enemy:
 	return GameManager.enemies[randi() % GameManager.enemies.size()]
+	
+func get_random_card() -> CardOnBoard:
+	var cards = GameManager.cards.filter(func(card): return card is CardOnBoard)
+	return cards[randi() % cards.size()]
 
 func perform_characters_attack():
-	if GameManager.cards.size() >= 1:
-		for card in GameManager.cards:
-			if card is CardOnBoard and card.resource is CharacterResource and GameManager.enemies.size() >= 1:
+	var cards = GameManager.cards.filter(func(card): return card is CardOnBoard)
+	if cards.size() >= 1:
+		for card in cards:
+			if card.resource is CharacterResource and GameManager.enemies.size() >= 1:
 				await card.attack(get_random_enemy())
 
 func perform_enemy_attack():
 	if GameManager.enemies.size() >= 1:
 		for enemy in GameManager.enemies:
-			if GameManager.cards.size() >= 1:
-				var card = GameManager.cards[randi() % GameManager.cards.size()]
-				if enemy != null and card != null:
-					enemy.attack(card)
-					await get_tree().create_timer(0.5).timeout
+			var cards = GameManager.cards.filter(func(card): return card is CardOnBoard)
+			if cards.size() >= 1:
+				await enemy.attack(get_random_card())
 
 func _on_attack_turn_started():
 	GameManager.turn += 1

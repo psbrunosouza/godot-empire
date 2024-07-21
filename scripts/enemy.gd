@@ -35,8 +35,9 @@ func attack(card):
 		projectile, 
 		"global_position", 
 		target.global_position, 
-		distance/ 280).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+		distance/ 350).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 	attack_tween.connect("finished", _on_attack_finished)
+	await get_tree().create_timer(0.5).timeout
 
 func set_resource(_resource: EnemyResource):
 	resource = _resource
