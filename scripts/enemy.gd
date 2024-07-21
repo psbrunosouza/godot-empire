@@ -9,6 +9,7 @@ var life: int
 var power: int
 var _last_position: Vector2
 var resource: EnemyResource: set = set_resource
+var spot: Spot
 var target
 
 func take_damage(damage: int):
@@ -16,6 +17,8 @@ func take_damage(damage: int):
 		var card_index = GameManager.enemies.find(self)
 		if card_index != -1:
 			GameManager.enemies.remove_at(card_index)
+			spot.is_ocuppied = false
+			spot.sprite.show()
 			queue_free()
 	else:
 		life -= damage

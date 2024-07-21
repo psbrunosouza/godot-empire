@@ -37,7 +37,9 @@ func _input(event):
 					elif card_on_board.resource is CardPlaceResource:
 						card_on_board.resource.call_effects()
 					
-					GameManager.selected_spot.is_ocuppied = true
+					card_on_board.spot = GameManager.selected_spot
+					card_on_board.spot.is_ocuppied = true
+					
 					is_dragging = false
 					card_in_hand.queue_free()
 					queue_free()

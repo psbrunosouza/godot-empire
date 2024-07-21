@@ -52,9 +52,10 @@ func generate_enemies(enemies_quantity: int, enemies_per_turn: int):
 					GameManager.enemies_resources[
 						GameManager.enemies_resources.keys().pick_random()
 					]
-				)
+				) as Enemy
 				GameManager.enemies.append(enemy)
 				spot.fill_spot(enemy)
+				enemy.spot = spot
 				enemies_generated = true
 
 func generate_spots(coordinate: Vector2i):
