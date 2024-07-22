@@ -9,50 +9,29 @@ enum PLACE {
 	PLAINS
 }
 
-enum NEGATIVE_ACTION {
-	SPAWN_WOLVE,
-	DEFENSE_BREAK,
-}
 
-enum POSITIVE_ACTION {
-	HEAL_CASTLE
-}
 
 @export_category("Attributes")
 @export_category("ID")
 @export var id: PLACE = PLACE.FOREST
 @export_group("Base Attributes")
-@export var life: int = 0
-@export var damage: int = 0
-@export var shield: bool = false
-@export_group("Effects")
-@export var effect_multiplier: int = 1
-@export_category("Abilities")
-@export var positive_effect: POSITIVE_ACTION
-@export var negative_effect: NEGATIVE_ACTION
+@export var time_to_activate: int
 @export_category("Texture")
 @export var texture: Texture = null
 
-func call_effects():
+func get_effect() -> GameManager.EFFECT:
+	var effect: GameManager.EFFECT
 	match id:
 		PLACE.FOREST:
-			if randi_range(0, 1) == 0:
-				match negative_effect:
-					NEGATIVE_ACTION.SPAWN_WOLVE:
-						#for values in range(randi_range(1, effect_multiplier)):
-							#var enemy = load("res://scenes/enemy.tscn").instantiate()
-							#enemy.resource = load("res://resources/enemy_resources/wolve.tres")
-							#GameManager.enemies.append(enemy)
-							#GameManager.add_enemy.emit(enemy)
-							pass
-			else:
-				match positive_effect:
-					POSITIVE_ACTION.HEAL_CASTLE:
-						#print("vc recebeu um efeito positivo")
-						pass
+			var possible_effects = [GameManager.EFFECT.SPAWN_GOBLIN, GameManager.EFFECT.HEAL_CASTLE]
+			effect = possible_effects[randi() % possible_effects.size()]
 		PLACE.OCEAN:
-			print("OCEAN")
+			var possible_effects = [GameManager.EFFECT.RANDOM_ALLY_TAKE_DAMAGE, GameManager.EFFECT.HEAL_RANDOM_ALLY]
+			effect = possible_effects[randi() % possible_effects.size()]
 		PLACE.MOUNTAINS:
-			print("MOUNTAINS")
+			var possible_effects = [GameManager.EFFECT.SPAWN_HOBGOBLIN, GameManager.EFFECT.SHIELD_TO_RANDOM_ALLY]
+			effect = possible_effects[randi() % possible_effects.size()]
 		PLACE.PLAINS:
-			print("PLAINS") 
+			var possible_effects = [GameManager.EFFECT.MORE_DAMAGE, GameManager.EFFECT.BREAK_RANDOM_DEFENSE]
+			effect = possible_effects[randi() % possible_effects.size()]
+	return effect

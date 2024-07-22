@@ -6,8 +6,7 @@
 [resource]
 script = ExtResource("2_xh1gb")
 id = 1
-life = 0
-damage = 0
+time_to_activate = 2
 shield = false
 effect_multiplier = 1
 positive_effect = 0

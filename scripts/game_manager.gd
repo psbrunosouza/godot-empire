@@ -10,9 +10,22 @@ var enemies_resources: Dictionary = {}
 var spots: Array[Spot] = []
 var enemies: Array[Enemy] = []
 var cards: Array = []
+var places: Array[CardOnBoard] = []
 var card_hand: Array[Card] = []
 var turn: int = 1
+var max_life: int = 10
 var life: int = 10
+
+enum EFFECT {
+	SPAWN_GOBLIN,
+	BREAK_RANDOM_DEFENSE,
+	SPAWN_HOBGOBLIN,
+	RANDOM_ALLY_TAKE_DAMAGE,
+	HEAL_CASTLE,
+	HEAL_RANDOM_ALLY,
+	SHIELD_TO_RANDOM_ALLY,
+	MORE_DAMAGE
+}
 
 func _init():
 	initialize_card_resources()

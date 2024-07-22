@@ -5,11 +5,6 @@
 
 [resource]
 script = ExtResource("1_exrmi")
-id = null
-life = null
-damage = null
-shield = null
-effect_multiplier = 2
-positive_effect = 0
-negative_effect = 0
+id = 0
+time_to_activate = 2
 texture = ExtResource("1_io51d")

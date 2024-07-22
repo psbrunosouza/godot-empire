@@ -14,6 +14,7 @@ const enemy_scene: PackedScene = preload("res://scenes/enemy.tscn")
 @onready var button = $UI/Container/ContainerVertical/Middle/VBoxContainer/ButtonEndTurn
 
 var enemies_generated: bool
+var effect_ativated: bool = false
 
 func _ready():
 	# create cards hand
@@ -39,14 +40,30 @@ func _ready():
 func _process(_delta):
 	if GameManager.life == 0:
 		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
-	generate_enemies(2, 3)
+	generate_enemies(2, 1)
+	active_effects()
 
-func generate_enemies(enemies_quantity: int, enemies_per_turn: int):
+func active_effects():
+	if GameManager.cards.size() and not effect_ativated:
+		for place in GameManager.places:
+			if GameManager.turn % place.resource.time_to_activate == 0:
+				match place.resource.get_effect():
+					GameManager.EFFECT.SPAWN_GOBLIN:
+						print("spawn goblin")
+					GameManager.EFFECT.HEAL_CASTLE:
+						if GameManager.life < GameManager.max_life:
+							if GameManager.life + 5 <= GameManager.max_life:
+								GameManager.life += 5
+							else:
+								GameManager.life += GameManager.max_life
+				effect_ativated = true
+
+func generate_enemies(enemies_per_turn: int, turns_to_spawn: int):
 	if  not enemies_generated:
-		for i in range(enemies_quantity):
+		for i in range(enemies_per_turn):
 			var spots: Array[Spot] = []
 			spots = GameManager.spots.filter(func(spot: Spot): return spot != null and not spot.is_ocuppied)
-			if GameManager.turn % enemies_per_turn == 0 and spots.size() >= 1:
+			if (GameManager.turn == 1 or GameManager.turn % turns_to_spawn == 0) and spots.size() >= 1:
 				var spot = spots[randi() % spots.size()]
 				var enemy = create_enemy(
 					GameManager.enemies_resources[
@@ -59,8 +76,8 @@ func generate_enemies(enemies_quantity: int, enemies_per_turn: int):
 				enemies_generated = true
 
 func generate_spots(coordinate: Vector2i):
-	for x in range(coordinate.x -1, coordinate.x + 2):
-		for y in range(coordinate.y -1, coordinate.y + 2):
+	for x in range(coordinate.x -2, coordinate.x + 3):
+		for y in range(coordinate.y -2, coordinate.y + 3):
 			var spot_coordinate = Vector2i(x, y)
 			if not GameManager.spot_ocuppied(spot_coordinate):
 				var spot = create_spot(spot_coordinate)
@@ -71,7 +88,7 @@ func generate_cards():
 	if GameManager.card_hand.size() >= 1:
 		GameManager.card_hand = []
 	
-	for value in range(1, 4):
+	for value in range(1, 6):
 		var random_resource = GameManager.card_resources.keys().pick_random()
 		var card = create_card(random_resource)
 		GameManager.card_hand.append(card)
@@ -98,11 +115,11 @@ func get_random_enemy() -> Enemy:
 	return GameManager.enemies[randi() % GameManager.enemies.size()]
 	
 func get_random_card():
-	return GameManager.cards[randi() % GameManager.cards.size()]
+	return GameManager.cards[randi() % GameManager.cards.filter(func(card): return card != null).size()]
 	
 func get_random_shilded_card() -> CardOnBoard:
 	var cards = GameManager.cards.filter(func(card): return card is CardOnBoard and card.has_shield)
-	return cards[randi() % cards.size()]
+	return cards[randi() % cards.filter(func(card): return card != null).size()]
 
 func check_has_shield() -> bool:
 	return GameManager.cards.filter(func(card): return card is CardOnBoard and card.has_shield).size() >= 1
@@ -111,15 +128,13 @@ func perform_characters_attack():
 	var cards = GameManager.cards.filter(
 		func(card): return card is CardOnBoard and card.resource is CharacterResource
 	) as Array[CardOnBoard]
-	if cards.size() >= 1:
-		for card in cards:
+	for card in cards:
+		if cards.size() >= 1 and GameManager.enemies.size() >= 1:
 			if card.resource.has_double_hit:
-				if GameManager.enemies.size() >= 1:
-					await card.attack(get_random_enemy())
-					await card.attack(get_random_enemy())
+				await card.attack(get_random_enemy())
+				await card.attack(get_random_enemy())
 			else:
-				if GameManager.enemies.size() >= 1:
-					await card.attack(get_random_enemy())
+				await card.attack(get_random_enemy())
 
 func perform_enemy_attack():
 	if GameManager.enemies.size() >= 1:

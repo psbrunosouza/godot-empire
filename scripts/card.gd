@@ -35,7 +35,7 @@ func _input(event):
 					if card_on_board.resource is CharacterResource:
 						GameManager.cards.append(card_on_board)
 					elif card_on_board.resource is CardPlaceResource:
-						card_on_board.resource.call_effects()
+						GameManager.places.append(card_on_board)
 					
 					card_on_board.spot = GameManager.selected_spot
 					card_on_board.spot.is_ocuppied = true

@@ -6,10 +6,5 @@
 [resource]
 script = ExtResource("2_wu24d")
 id = 2
-life = 0
-damage = 0
-shield = false
-effect_multiplier = 1
-positive_effect = 0
-negative_effect = 0
+time_to_activate = 2
 texture = ExtResource("1_bwdfv")
