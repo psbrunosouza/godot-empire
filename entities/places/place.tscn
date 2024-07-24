@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsnkveimrrpye"]
+
+[ext_resource type="Texture2D" uid="uid://b4jn8h6p42ams" path="res://assets/places/forest.png" id="1_85n3f"]
+[ext_resource type="Script" path="res://entities/places/place.gd" id="1_h2f8u"]
+
+[node name="Place" type="CharacterBody2D"]
+script = ExtResource("1_h2f8u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_85n3f")

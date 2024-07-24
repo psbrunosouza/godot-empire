@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="ProjectileResource" load_steps=3 format=3 uid="uid://cjo7l5024p2s4"]
-
-[ext_resource type="Script" path="res://scripts/projectile_resource.gd" id="1_00w53"]
-[ext_resource type="Texture2D" uid="uid://dlybexiuuhep7" path="res://assets/projectiles/sword.png" id="2_p3dt4"]
-
-[resource]
-script = ExtResource("1_00w53")
-texture = ExtResource("2_p3dt4")

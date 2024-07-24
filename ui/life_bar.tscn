@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnppfar7yp036"]
+
+[ext_resource type="Texture2D" uid="uid://pwd1cv8pqip0" path="res://assets/misc/bar_over.png" id="1_tq1rk"]
+[ext_resource type="Texture2D" uid="uid://busth04kh1fk7" path="res://assets/misc/bar_progress.png" id="2_6uugr"]
+
+[node name="Life" type="TextureProgressBar"]
+offset_left = -10.0
+offset_top = -2.0
+offset_right = 11.0
+offset_bottom = 2.0
+pivot_offset = Vector2(10, 2)
+value = 20.0
+texture_under = ExtResource("1_tq1rk")
+texture_progress = ExtResource("2_6uugr")

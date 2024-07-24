@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://xfu85b1yemjk"]
+
+[ext_resource type="Script" path="res://resources/projectiles/projectile_resource.gd" id="1_c48ou"]
+[ext_resource type="Texture2D" uid="uid://f2mto3mspqux" path="res://assets/projectiles/shuriken.png" id="2_e42r8"]
+
+[resource]
+script = ExtResource("1_c48ou")
+texture = ExtResource("2_e42r8")

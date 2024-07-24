@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CharacterResource" load_steps=4 format=3 uid="uid://bcyhl7alm6y60"]
+
+[ext_resource type="Texture2D" uid="uid://boeelgy143vj5" path="res://assets/characters/rogue.png" id="1_xqgt7"]
+[ext_resource type="Resource" uid="uid://xfu85b1yemjk" path="res://resources/projectiles/shuriken.tres" id="2_2e6g2"]
+[ext_resource type="Script" path="res://resources/characters/card_character_resource.gd" id="2_v07yp"]
+
+[resource]
+script = ExtResource("2_v07yp")
+id = "\"rogue\""
+life = 3
+power = 4
+has_shield = false
+has_double_hit = false
+texture = ExtResource("1_xqgt7")
+projectile_resource = ExtResource("2_2e6g2")

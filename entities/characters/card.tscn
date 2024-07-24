@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt2yj3e60a611"]
+
+[ext_resource type="Script" path="res://entities/characters/card.gd" id="1_op58g"]
+[ext_resource type="Texture2D" uid="uid://bxqhw7ir6cfxv" path="res://assets/characters/archer.png" id="2_ucuyr"]
+
+[node name="Card" type="MarginContainer"]
+custom_minimum_size = Vector2(32, 32)
+anchors_preset = -1
+anchor_right = 0.05
+anchor_bottom = 0.089
+offset_bottom = -0.0400009
+pivot_offset = Vector2(16, 16)
+script = ExtResource("1_op58g")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_ucuyr")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
